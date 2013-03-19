@@ -1,0 +1,70 @@
+% layout 'bootstrap';
+% title 'Recherche';
+<div class="container">
+	<div class ="row">
+		<div class="span6 offset3">
+			<div class="page-header">
+			  <h1>Rechercher <small>un nouveau trajet</small></h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span6 offset3">
+			<form class="form-horizontal" method="get" action="/resultats">
+			  <fieldset>
+			    <div class="control-group">
+				    <label class="control-label">Départ</label>
+				    <div class="controls">
+					    <div class="input-append">
+						  <input class="span3" name="dep" placeholder="ex. Paris" id="depInput" data-provide="typeahead" type="text">
+						  <span class="add-on"><i class="icon-globe"></i></span>
+						</div>
+					</div>
+				</div>
+			    <div class="control-group">
+				    <label class="control-label">Destination</label>
+				    <div class="controls">
+					    <div class="input-append">
+						  <input class="span3" name="arr" placeholder="ex. Bordeaux" id="arrInput" type="text">
+						  <span class="add-on"><i class="icon-globe"></i></span>
+						</div>
+					</div>
+				</div>
+			    <div class="control-group">
+				    <label class="control-label">Date</label>
+				    <div class="controls">
+					    <div class="input-append" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+						  <input class="span3" name="date" id="inputDate" placeholder="ex. 21-12-2012" type="text">
+						  <span class="add-on"><i class="icon-calendar"></i></span>
+						</div>
+					</div>
+				</div>
+			    <div class="controls">
+			    	<button type="submit" class="btn btn-primary">Rechercher</button>
+			    </div>
+			  </fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('#inputDate').datepicker({
+				format: 'dd-mm-yyyy'
+			});
+$('#depInput').typeahead({
+	source:function (typeahead, query) {
+        return $.get('/mango', { query: query }, function (data) {
+            return typeahead.process(data);
+        });
+    },
+    property: "City"
+});
+$('#arrInput').typeahead({
+	source:function (typeahead, query) {
+        return $.get('/mango', { query: query }, function (data) {
+            return typeahead.process(data);
+        });
+    },
+    property: "City"
+});
+</script>

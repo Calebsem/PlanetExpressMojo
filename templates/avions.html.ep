@@ -1,0 +1,26 @@
+<div id="avions">
+<% foreach my $domain (keys %{$pageContent}) { %>
+<div class="row">
+	<div class="span3">
+		<p><b><%= $pageContent->{$domain}->{title} %></b></p>
+		<p><%= $pageContent->{$domain}->{date} %></p>
+	</div>
+	<div class="span1">
+		<h4 style="text-align:center;"><%= $pageContent->{$domain}->{price} %></h4>
+		<p style="font-size:10px;text-align:center;margin-top:-10px;">
+			<a href="#">Voir offre</a>
+		</p>
+	</div>
+</div>
+<% } %>
+<form action="http://www.airfrance.fr/cgi-bin/AF/FR/fr/local/process/standardbooking/ValidateSearchAction.do" method="post" id="avionform">
+<% foreach my $domain (keys %{$form}) { %>
+%= hidden_field $domain => $form->{$domain}
+<% } %>
+</form>
+<script type="text/javascript">
+	$("#avions a").click(function(){
+		$("#avionform").submit();
+	});
+</script>
+</div>

@@ -1,0 +1,29 @@
+% layout 'bootstrap';
+% title 'Resultats';
+% use Time::Piece;
+<div class="container">
+	<div class="page-header">
+	  <h1>Resultats <small><%= $dep %> > <%= $arr %></small></h1>
+	</div>
+
+	<div class="row">
+		<div class="span4">
+			<h3>Covoiturage <small>from covoiturage.fr</small></h3>
+			<div id="covoiturage">Chargement...</div>
+		</div>
+		<div class="span4">
+			<h3>Trains <small>from voyages-sncf.mobi</small></h3>
+			<div id="trains">Chargement...</div>
+		</div>
+		<div class="span4">
+			<h3>Avions <small>from airfrance.fr</small></h3>
+			<div id="avions">Chargement...</div>
+		</div>
+	</div>
+
+	<script>
+	  $("#covoiturage").load("/covoiturage?date=<%= $date %>&dep=<%= $dep %>&arr=<%= $arr %>");
+	  $("#trains").load('/trains?date=<%= Time::Piece->strptime($date, "%d%m%Y")->strftime("%d%m") %>&dep=<%= $dep %>&arr=<%= $arr %>');
+	  $("#avions").load("/avions?date=<%= $date %>&dep=<%= $depIATA %>&arr=<%= $arrIATA %>");
+	</script>
+</div>
