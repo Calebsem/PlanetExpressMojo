@@ -114,7 +114,7 @@ get '/trains' => sub {
     	}
 	});
 
-	while( my ($k,$v) = each($trips) ) {
+	while( my ($k,$v) = each(%$trips) ) {
 		my $domContent = Mojo::DOM->new($v->{content});
 		my $title = $domContent->find('b')->[1]->text .' > '. $domContent->find('b')->[2]->text;
 		$trips->{$k}->{title} = ucfirst(lc($title));
