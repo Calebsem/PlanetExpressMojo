@@ -59,10 +59,13 @@ get '/covoiturage' => sub {
 		};
 		$trips->{$i}->{price} =~ s/â¬/€/;
 		$trips->{$i}->{title} =~ s/→/>/;
-		$trips->{$i}->{title} =~ s/Ã/E/;
-		$trips->{$i}->{title} =~ s/Ã¨/E/;
+		$trips->{$i}->{title} =~ s/Ã/ÿ/;
+		$trips->{$i}->{title} =~ s/Ã¨/è/;
 		$trips->{$i}->{title} =~ s/Ãª/ê/;
 		$trips->{$i}->{title} =~ s/Ã¢/â/;
+		$trips->{$i}->{title} =~ s/Ã©/é/;
+		$trips->{$i}->{title} =~ s/Ã /à/;
+		$trips->{$i}->{title} =~ s/Ã¦/œ/;
 		$i++;
 	}
 
