@@ -62,6 +62,7 @@ get '/covoiturage' => sub {
 		$trips->{$i}->{title} =~ s/Ã/E/;
 		$trips->{$i}->{title} =~ s/Ã¨/E/;
 		$trips->{$i}->{title} =~ s/Ãª/ê/;
+		$trips->{$i}->{title} =~ s/Ã¢/â/;
 		$i++;
 	}
 
